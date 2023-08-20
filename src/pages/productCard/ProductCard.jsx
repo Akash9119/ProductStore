@@ -1,33 +1,65 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
-const Product = () => {
-    const { id } = useParams();
-    const [product, setProduct] = useState({});
-    const [productNotFound, setProductNotFound] = useState(false);
+const ProductCard = () => {
+  const { id } = useParams();
+  const [product, setProduct] = useState({});
+  const [productNotFound, setProductNotFound] = useState(false);
 
-    useEffect(() => {
-        const fetchProduct = async () => {
-            try {
-                const response = await fetch(`https://fakestoreapi.com/products/${id}`);
-                if (response.status === 200) {
-                    const data = await response.json();
-                    setProduct(data);
-                } else {
-                    setProductNotFound(true);
-                }
-            } catch (error) {
-                setProductNotFound(true);
-            }
-        };
-        fetchProduct();
-    }, [id]);
+  const navigate = useNavigate();
+  const handleClick = (product, redirect) => {
+    console.log(product);
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const isProdictExist = cart.find((item) => item.id === product.id);
+    if (isProdictExist) {
+      const updatedCart = cart.map(item => {
+        if (item.id === product.id) {
+          return {
+            ...item,
+            quantity: item.quantity + 1,
+          };
+        }
+        return item;
+      });
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+    } else {
+      localStorage.setItem(
+        "cart",
+        JSON.stringify([...cart, { ...product, quantity: 1 }])
+        );
+      }
+      alert("Product Added To Cart.")
+      if(redirect === true) {
+        navigate('/cart')
+      }
+  };
 
-    if (productNotFound) {
-        return <div className="text-6xl text-center font-bold m-56">Product Not Found...</div>;
-    }
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const response = await fetch(`https://fakestoreapi.com/products/${id}`);
+        if (response.status === 200) {
+          const data = await response.json();
+          setProduct(data);
+        } else {
+          setProductNotFound(true);
+        }
+      } catch (error) {
+        setProductNotFound(true);
+      }
+    };
+    fetchProduct();
+  }, [id]);
 
+  if (productNotFound) {
     return (
+      <div className="text-6xl text-center font-bold m-56">
+        Product Not Found...
+      </div>
+    );
+  }
+
+  return (
     <section className="text-gray-600 body-font overflow-hidden">
       <div className="container px-5 py-24 mx-auto">
         <div className="lg:w-4/5 mx-auto flex flex-wrap">
@@ -141,9 +173,7 @@ const Product = () => {
                 </a>
               </span>
             </div>
-            <p className="leading-relaxed">
-              {product?.description}
-            </p>
+            <p className="leading-relaxed">{product?.description}</p>
             <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
               <div className="flex">
                 <span className="mr-3">Color</span>
@@ -180,10 +210,16 @@ const Product = () => {
               <span className="title-font font-medium text-2xl text-gray-900">
                 ${product.price}
               </span>
-              <button className="flex ml-auto text-white bg-red-400 border-2 border-gray-800  py-2 px-6 focus:outline-none hover:bg-red-600 rounded font-bold">
+              <button
+                className="flex ml-auto text-white bg-red-400 border-2 border-gray-800  py-2 px-6 focus:outline-none hover:bg-red-600 rounded font-bold"
+                onClick={() => handleClick(product, true)}
+              >
                 Bye it Now
               </button>
-              <button className="flex ml-auto text-white bg-red-400 border-2 border-gray-800 py-2 px-6 focus:outline-none hover:bg-red-600 rounded font-bold">
+              <button
+                className="flex ml-auto text-white bg-red-400 border-2 border-gray-800 py-2 px-6 focus:outline-none hover:bg-red-600 rounded font-bold"
+                onClick={() => handleClick(product)}
+              >
                 Add To Cart
               </button>
               <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
@@ -206,4 +242,4 @@ const Product = () => {
   );
 };
 
-export default Product;
+export default ProductCard;

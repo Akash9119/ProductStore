@@ -1,8 +1,8 @@
 import React,{ useEffect, useState } from "react"
 import Home from "./home/Home"
 import Products from "./products/Products"
-import FearureCard from "./featureCard/FearureCard"
 import StatsCard from "./stastsCard/StatsCard"
+import Categories from "../../components/Categories"
 
 const Hero = () => {
     const [products, setProducts] = useState([])
@@ -20,11 +20,11 @@ const Hero = () => {
   return (
     <div className="mx-5">
     <Home />
+    <h2 className="text-5xl font-bold text-center mt-10">Our Featured Products</h2>
+    <Categories />
     <h2 className="text-5xl font-bold text-center mt-20">Our Products</h2>
     {products.length >0 ? <Products products={products}/>: <div> Loading...</div>}
     <Products />
-    <h2 className="text-5xl font-bold text-center mt-10">Our Featured Products</h2>
-    <FearureCard />
     <h2 className="text-5xl font-bold text-center mt-10">Stats About Our Web App</h2>
     <h3 className="text-2xl font-bold text-center mt-10">Last Updated: 12th August 2023</h3>
     <StatsCard />
