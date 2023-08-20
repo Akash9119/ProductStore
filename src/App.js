@@ -7,6 +7,8 @@ import ProductCard from "./pages/productCard/ProductCard";
 import ProductsPage from "./pages/products/ProductsPage";
 import ProductsCategories from "./pages/productsCategories/ProductsCategories";
 import Cart from "./pages/cart/Cart";
+import AboutPage from "./pages/aboutPage/AboutPage";
+import ContactPage from "./pages/contactPage/ContactPage";
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
         <Route path="/products" element={<ProductsPage />} />
         <Route path="/categories/:name" element={<ProductsCategories />} />
         <Route path="/cart" element={ <Cart /> } />
+        <Route path="/about" element={ <AboutPage /> } />
+        <Route path="/contact" element={ <ContactPage /> } />
         <Route path="*" element={<div className="text-center block font-bold text-4xl">404 Page Not Found</div>} />
       </Routes>
       <Footer />

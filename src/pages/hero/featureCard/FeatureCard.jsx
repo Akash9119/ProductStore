@@ -20,7 +20,8 @@ const FeatureCard = ({ cards = [] }) => {
                 className="sm:w-16 sm:h-16 w-10 h-10"
                 viewBox="0 0 24 24"
               >
-                <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
               </svg>
             </div>
             <div className="flex-grow sm:text-left text-center mt-6 sm:mt-0">
