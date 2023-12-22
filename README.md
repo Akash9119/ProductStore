@@ -17,6 +17,7 @@ Welcome to ProductStore, a React-based E-Commerce Website that offers a dynamic 
 
 ## Screenshots
 
+![screencapture-product-store-snowy-vercel-app-2023-12-22-10_34_55](https://github.com/Akash9119/ProductStore/assets/68374089/c84ecd39-85e8-42ec-bd35-d1dd7f4166bc)
 
 ## How to Use
 
