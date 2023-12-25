@@ -8,8 +8,8 @@ const Products = ({ products = [] }) => {
         <div className="flex flex-wrap -m-4">
           {products.map((product) => {
             // Use singular "product" instead of "products"
-            console.log(product, "product"); // Updated log for better clarity
-            const { id, title, price, description, category, image } = product; // Updated variable name for clarity
+            // console.log(product, "product");  Updated log for better clarity
+            const { id, title, price, category, image } = product; // Updated variable name for clarity
             return (
               <div
                 key={id}

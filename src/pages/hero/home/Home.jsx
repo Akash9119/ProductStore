@@ -24,7 +24,7 @@ const Home = () => {
 
   const navigate = useNavigate();
   const handleClick = (product, redirect) => {
-    console.log(product);
+    // console.log(product);
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
     const isProductExist = cart.find((item) => item.id === product.id);
     if (isProductExist) {
