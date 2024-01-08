@@ -131,7 +131,7 @@ const Footer = () => {
       <div className="bg-gray-100">
         <div className="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
           <p className="text-gray-500 text-sm md:text-left md:ml-auto md:mr-0 text-center">
-            @ 2023 Ecommerce ---&gt;
+            @ 2024 Ecommerce by Akash Vasava ---&gt;
               <span> All rights reserved to Akash Vasava</span>
           </p>
           <span className="inline-flex sm:ml-auto sm:mt-0 mt-2 justify-center sm:justify-start">
